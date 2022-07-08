@@ -5,16 +5,19 @@ class Vehiculo:
     La clase permite crear objetos de tipo vehiculo
     Autor: Guillermo Valarezo Guzmán
     """
-    def __init__(self, marca:str=None, modelo:str=None, anio:int= 1890, matriculado:bool= False, placa:str=''):
+    def __init__(self, marca:str=None, modelo:str=None, anio:int= 1890, matriculado:bool= False
+                 , placa:str='', *args, **kwargs):
         self._marca = marca
         self._modelo = modelo
         self._anio = anio
         self._matriculado = matriculado
         self._placa = placa
+        self._adicionales = kwargs
 
     def __str__(self):
         return f'Vehiculo [marca: {self._marca}, modelo: {self._modelo}, año: {self._anio}, ' \
-               f'matriculado?: {self._matriculado}, placa: {self._placa}]'
+               f'matriculado?: {self._matriculado}, placa: {self._placa}, ' \
+               f'adicionales: {self._adicionales}]'
 
     @property
     def marca(self):
@@ -56,6 +59,14 @@ class Vehiculo:
     # @placa.setter
     # def placa(self, placa):
     #     self.__placa = placa
+
+    @property
+    def adicionales(self):
+        return self._adicionales
+
+    @adicionales.setter
+    def adicionales(self, adicionales):
+        self._adicionales = adicionales
 
 
 if __name__ == "__main__":
@@ -110,7 +121,18 @@ if __name__ == "__main__":
     # v8.placa = 'GPO-1233'
     # v8._placa = 'asbcded'
     print(v8)
+    paises = ('Ecuador', 'Peru', 'Colombia')
+    adicionales = {'cilindraje':'4.0', 'color':'negro', 'precio':'50000'}
+    v9 = Vehiculo(placa='Gpo9874', marca='Ford', modelo='F150', args=paises, kwargs = adicionales)
+    print(v9)
+    print(v9.adicionales['args'])
+    print(v9.adicionales['args'][2])
+    print(v9.adicionales['kwargs']['color'])
 
+    paises = ('Chile', 'Bolivia', 'Argentina', 'Ecuador')
+    adicionales = {'chasis':'54545456', 'color':'negro', 'precio':'5000', 'tipo_combustible':'gasolina'}
+    v10 = Vehiculo(placa='PUY1234', marca='Suzuki', modelo='UNO', args=paises, kwargs = adicionales)
+    print(v10)
 
 
 
