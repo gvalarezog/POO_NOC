@@ -1,7 +1,8 @@
 from figura_geometrica import FiguraGeometrica
+from color import Color
 import math
 
-class Circunferencia(FiguraGeometrica):
+class Circunferencia(FiguraGeometrica, Color):
     def __init__(self, radio:float=None):
         super(Circunferencia, self).__init__(alto=radio, ancho=None)
 
